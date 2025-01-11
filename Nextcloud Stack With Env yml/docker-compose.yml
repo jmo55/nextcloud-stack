@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  # Database container
+  db:
+    image: mariadb:latest
+    container_name: nextcloud_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - internal_net
+
+  # Nextcloud container
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud_app
+    restart: unless-stopped
+    environment:
+      MYSQL_HOST: db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      CLAMAV_HOST: clamav
+      AV_ENABLED: true
+      AV_MODE: daemon
+      AV_HOSTS: clamav:3310
+    volumes:
+      - nextcloud_data:/var/www/html
+    depends_on:
+      - db
+      - clamav
+    networks:
+      - internal_net
+      - external_net
+
+  # ClamAV container
+  clamav:
+    image: mkodockx/docker-clamav:alpine
+    container_name: clamav
+    restart: unless-stopped
+    networks:
+      - internal_net
+    ports:
+      - "3310:3310"
+
+  # Nginx Proxy Manager
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx_proxy_manager
+    restart: unless-stopped
+    ports:
+      - "80:80"    # HTTP
+      - "443:443"  # HTTPS
+      - "81:81"    # Admin interface
+    volumes:
+      - nginx_data:/data
+      - nginx_letsencrypt:/etc/letsencrypt
+    networks:
+      - external_net
+
+# Networks definitions
+networks:
+  internal_net:
+    driver: bridge
+  external_net:
+    driver: bridge
+
+# Volumes definitions
+volumes:
+  db_data:
+  nextcloud_data:
+  nginx_data:
+  nginx_letsencrypt:

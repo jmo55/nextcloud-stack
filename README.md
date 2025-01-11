@@ -31,8 +31,8 @@ NOTE:
 
 If you prefer, you can directly use the docker-compose.yml file without creating a .env file. To do this:
 
-    Replace the placeholder values (EnterYourPasswordHere) in the docker-compose.yml file with your actual credentials.
-    Run the next step as usual.
+Replace the placeholder values (EnterYourPasswordHere) in the docker-compose.yml file with your actual credentials.
+Run the next step as usual.
 
 ### Step 3: Update docker-compose.yml
 

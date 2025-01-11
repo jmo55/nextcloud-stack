@@ -50,8 +50,11 @@ docker-compose up -d
 
 Access Nextcloud: Navigate to http://<your-server-ip> in your browser to complete the setup wizard.
 Access Nginx Proxy Manager: Navigate to http://<your-server-ip>:81 for the admin interface.
+
+```bash
 	http://<your-server-ip>
 	http://<your-server-ip>:81
+```
 	
 Persistent Storage
 

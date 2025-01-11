@@ -52,8 +52,8 @@ Access Nextcloud: Navigate to http://<your-server-ip> in your browser to complet
 Access Nginx Proxy Manager: Navigate to http://<your-server-ip>:81 for the admin interface.
 
 ```bash
-	http://<your-server-ip>
-	http://<your-server-ip>:81
+http://<your-server-ip>
+http://<your-server-ip>:81
 ```
 	
 Persistent Storage

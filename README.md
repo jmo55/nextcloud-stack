@@ -11,14 +11,16 @@ This project sets up a self-hosted Nextcloud instance using Docker Compose. The 
 ### Step 1: Clone the Repository
 ```bash
 git clone https://github.com/jmo55/nextcloud-stack
-cd nextcloud-stack ```
+cd nextcloud-stack
+``` 
 
 ### Step 2: Create a .env File
 
 Create a .env file in the root of the project directory to store sensitive environment variables.
 
 Example .env file:
-```
+
+```bash
 MYSQL_ROOT_PASSWORD=your_root_password
 MYSQL_DATABASE=nextcloud
 MYSQL_USER=nextcloud_user
@@ -39,7 +41,8 @@ The docker-compose.yml file is preconfigured to use the .env file. You can revie
 ### Step 4: Start the Containers
 
 Run the following command to start the services:
-```
+
+```bash
 docker-compose up -d
 ```
 
@@ -59,7 +62,8 @@ This project uses Docker volumes to persist data:
 Updating Services
 
 To update the Docker images, pull the latest versions and recreate the containers:
-```
+
+```bash
 docker-compose pull
 docker-compose up -d
 ```

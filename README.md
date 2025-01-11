@@ -48,16 +48,18 @@ docker-compose up -d
 
 ### Step 5: Verify the Setup
 
-    Access Nextcloud: Navigate to http://<your-server-ip> in your browser to complete the setup wizard.
-    Access Nginx Proxy Manager: Navigate to http://<your-server-ip>:81 for the admin interface.
+Access Nextcloud: Navigate to http://<your-server-ip> in your browser to complete the setup wizard.
+Access Nginx Proxy Manager: Navigate to http://<your-server-ip>:81 for the admin interface.
+	http://<your-server-ip>
+	http://<your-server-ip>:81
 	
 Persistent Storage
 
 This project uses Docker volumes to persist data:
 
-    db_data: Stores MariaDB data.
-    nextcloud_data: Stores Nextcloud files.
-    nginx_data and nginx_letsencrypt: Store Nginx Proxy Manager data and certificates.
+db_data: Stores MariaDB data.
+nextcloud_data: Stores Nextcloud files.
+nginx_data and nginx_letsencrypt: Store Nginx Proxy Manager data and certificates.
 	
 Updating Services
 
